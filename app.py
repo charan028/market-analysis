@@ -20,10 +20,10 @@ def result():
     outlet_type = float(request.form['outlet_type'])
     X = np.array([[item_weight, item_fat_content, item_visibility, item_type, item_mrp,
                    outlet_establishment_year, outlet_size, outlet_location_type, outlet_type]])
-    scaler_path=r'H:\models\sc.sav'
+    scaler_path=r'models\sc.sav'
     sc=joblib.load(scaler_path)
     X_std=sc.transform(X)
-    model_path=r'H:\models\lr.sav'
+    model_path=r'models\lr.sav'
     model=joblib.load(model_path)
     Y_pred = model.predict(X_std)
     output = round(Y_pred[0], 2)
@@ -33,5 +33,4 @@ def result():
 
 
 if __name__=="__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(debug=True,port=port)
+    app.run()
